@@ -1,15 +1,5 @@
-#include "../include/http_tcp_linux.hpp"
+#include "../include/http_tcp_linux.h"
 #include <iostream>
-
-
-void message_handler(char incoming_message[BUFFER_SIZE], http::TcpServer * server){
-    server->send_response("");
-}
-
-
-
-
-
 
 int main(int argc, char * argv[]){
 
@@ -20,7 +10,6 @@ int main(int argc, char * argv[]){
     else if (argc == 3){
 
         http::TcpServer server = http::TcpServer(std::string(argv[1]), std::stoi(argv[2]));
-        server.setup_handler(&message_handler);
         server.startServer();
     }
     else{
