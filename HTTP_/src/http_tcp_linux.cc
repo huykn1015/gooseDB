@@ -47,8 +47,6 @@ namespace http {
             TcpServer::exitWithError("Cannot Open Socket");
             return 1;
         }
-        //std::cout<<"html size: " << htmlFile.size()<<std::endl;
-        // binds socket to socket addr
         if (bind(server_socket_fd,(sockaddr *)&socketAddress, server_socketAddress_len) < 0){
             exitWithError("Cannot connect socket to address");
             return 1;
@@ -80,24 +78,6 @@ namespace http {
             std::cout<< "Client Message: " << buffer << std::endl;
 
             (*function_prt)(buffer, this);
-            /*long totalBytesSent = 0;
-            while (totalBytesSent < test_message.size()){
-                bytesSent = send(server_new_socket_fd, test_message.c_str(), test_message.size(), 0);
-                if (bytesSent < 0){
-                    break;
-                }
-                std::cout<<"Sending response...\n";
-                totalBytesSent += bytesSent;
-            }
-            if (totalBytesSent == test_message.size()){
-                std::cout<< "Message Sent\n\n";
-            }
-            else{
-                std::cout<< "Message could not be sent\n\n";
-            }
-            close(server_new_socket_fd);
-            */
-            //send_response("");
         }   
         return 0;   
     }

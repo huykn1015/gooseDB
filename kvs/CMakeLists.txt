@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.9.1)
+project(KeyValueStore)
+add_executable(kvs_main ./rckvs_main.cc)
+add_library(kvs_lib ./src/kvs.cc ./include/kvs.h)
+target_link_libraries(kvs_main kvs_lib)

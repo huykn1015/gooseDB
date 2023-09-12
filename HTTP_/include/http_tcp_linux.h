@@ -55,8 +55,6 @@ namespace http {
         socklen_t  server_socketAddress_len;
         void stopServer(); // stop server and close all sockets
         void exitWithError(const std::string err_message);
-
-
     };
 };
 #endif
