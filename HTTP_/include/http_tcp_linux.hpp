@@ -41,18 +41,21 @@ namespace http {
         TcpServer(std::string ip_address, int port = 0);
         ~TcpServer();
         std::string create_response(std::string message);
+        void send_response(std::string response);
         int  startServer(); // start server and begin listening for connections
         void getServerAddr();
+        void setup_handler(void (*new_function_prt)(char incoming_message[BUFFER_SIZE], TcpServer * server));
     private:
         std::string ip_address; // ip address of the server socket
         int port; //port of the server socket
         int server_socket_fd; // socket listening for new clients
         int server_new_socket_fd; // socket for communicating with clients
-        long incoming_data;
+        void (*function_prt)(char incoming_message[BUFFER_SIZE], TcpServer * server); // function pointer to message handler
         struct socketaddr_in socketAddress; // information about the socket
         socklen_t  server_socketAddress_len;
         void stopServer(); // stop server and close all sockets
         void exitWithError(const std::string err_message);
+
 
     };
 };

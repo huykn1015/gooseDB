@@ -79,7 +79,8 @@ namespace http {
             std::cout<< "Connected Accepted ...\n";
             std::cout<< "Client Message: " << buffer << std::endl;
 
-            long totalBytesSent = 0;
+            (*function_prt)(buffer, this);
+            /*long totalBytesSent = 0;
             while (totalBytesSent < test_message.size()){
                 bytesSent = send(server_new_socket_fd, test_message.c_str(), test_message.size(), 0);
                 if (bytesSent < 0){
@@ -95,15 +96,38 @@ namespace http {
                 std::cout<< "Message could not be sent\n\n";
             }
             close(server_new_socket_fd);
+            */
+            //send_response("");
         }   
-
-
-
-
-
-
         return 0;   
     }
+
+    void TcpServer::send_response(std::string response){
+        long totalBytesSent = 0;
+        int bytesSent;
+        while (totalBytesSent < response.size()){
+            bytesSent = send(server_new_socket_fd, response.c_str(), response.size(), 0);
+            if (bytesSent < 0){
+                break;
+            }
+            std::cout<<"Sending response...\n";
+            totalBytesSent += bytesSent;
+        }
+        if (totalBytesSent == response.size()){
+            std::cout<< "Message Sent\n\n";
+        }
+        else{
+            std::cout<< "Message could not be sent\n\n";
+        }
+        close(server_new_socket_fd);
+    }   
+
+    void TcpServer::setup_handler(void (*new_function_prt)(char incoming_message[BUFFER_SIZE], TcpServer * server)){
+        function_prt = new_function_prt;
+    }
+
+
+
     void TcpServer::stopServer(){ // close all open socket fds
         close(server_socket_fd);
         close(server_new_socket_fd);
