@@ -1,0 +1,4 @@
+/Users/huykn/Desktop/gooseDB/HTTP/CMakeFiles/http_linux_server.dir
+/Users/huykn/Desktop/gooseDB/HTTP/CMakeFiles/http_tcp_linux.dir
+/Users/huykn/Desktop/gooseDB/HTTP/CMakeFiles/edit_cache.dir
+/Users/huykn/Desktop/gooseDB/HTTP/CMakeFiles/rebuild_cache.dir
