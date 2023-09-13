@@ -16,19 +16,17 @@ namespace kvs{
 
     const size_t token_length = 16;
 
-    std::string getPath(){
-        int ret;
-        pid_t pid; 
-        char pathbuf[PROC_PIDPATHINFO_MAXSIZE];
 
-        pid = getpid();
-        ret = proc_pidpath (pid, pathbuf, sizeof(pathbuf));
-        if ( ret <= 0 ) {
-            fprintf(stderr, "PID %d: proc_pidpath ();\n", pid);
-            fprintf(stderr, "    %s\n", strerror(errno));
-            return {};
-        } 
-        return std::string(pathbuf);
+    int hash(std::string key, int divisor){
+        std::hash<std::string> hash_obj;
+        return static_cast<unsigned int>(hash_obj(key)) % divisor;
+    }
+
+
+    std::string getPath(){
+        char buffer[1000];
+        getcwd(buffer, sizeof(buffer));
+        return std::string(buffer);
     }
 
     bool KeyValueStore::fileExists(std::string filename){
@@ -39,8 +37,6 @@ namespace kvs{
         return false;
 
     }
-
-
 
     char randChar(){
         const char charset[] =
@@ -66,7 +62,7 @@ namespace kvs{
 
     }
 
-    int KeyValueStore::create_kvs(std::string name, std::string &edit_token, std::string &read_token){
+    int KeyValueStore::create_kvs(std::string name, std::string &edit_token, std::string &read_token, int kvs_size){
         std::string fullpath = db_path + name;
         if(fileExists(fullpath)){
             std::cout<< "DB already exists";
@@ -76,18 +72,31 @@ namespace kvs{
             std::cout<< "Error creating DB";
             return 1;
         }
-
+        chdir((db_path + "/" + name).c_str());
         std::ofstream info_file(name + ".txt");
         info_file << name << std::endl;
+        info_file << kvs_size << std::endl;
         info_file << "0" << std::endl;
         edit_token = generate_token(token_length);
         read_token = generate_token(token_length);
-
         info_file << edit_token << std::endl << read_token;
-
+        std::cout<< "DB " << name << "successfully created" << std::endl;
+        return 0;
     }
 
     int KeyValueStore::open_kvs(std::string name){
+        std::string fullpath = db_path + name;
+        if(!fileExists(fullpath)){
+            std::cout<< "DB does not exists";
+            return 1;
+        }
+        chdir((db_path + "/" + name).c_str());
+
+
+
+
+
+
         return 0;
     }
 
@@ -96,7 +105,7 @@ namespace kvs{
     }
 
     std::string KeyValueStore::get_entry(std::string key){
-        return {};
+        return NULL;
     }
 
     int KeyValueStore::update_entry(std::string key, std::string new_value){

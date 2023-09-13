@@ -1,4 +1,5 @@
 dbName
+kvs_size#
 entiries#
 edit_token
 read_token
