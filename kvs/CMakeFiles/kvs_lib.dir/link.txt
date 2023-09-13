@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libkvs_lib.a CMakeFiles/kvs_lib.dir/src/kvs.cc.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libkvs_lib.a

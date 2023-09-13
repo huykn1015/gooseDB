@@ -1,13 +1,14 @@
 #include "../include/http_tcp_linux.h"
-#include <iostream>
-#include <sys/socket.h>
-#include <unistd.h>
+
 #include <arpa/inet.h>
 #include <sys/types.h>
-#include <sstream>
+#include <sys/socket.h>
+#include <unistd.h>
 #include <errno.h>
 
 
+#include <iostream>
+#include <sstream>
 
 namespace http {
     TcpServer::TcpServer(std::string ip_address, int port):ip_address(ip_address), port(port){

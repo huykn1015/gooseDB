@@ -1,37 +1,38 @@
 #ifndef INCLUDED_HTTP_TCP_LINUX
 #define INCLUDED_HTTP_TCP_LINUX
-#include <string>
+
 #include <sys/types.h>
 #include <sys/socket.h>
 
+#include <string>
 
-enum{BUFFER_SIZE = 3072};
-
-struct in_addr_{
-    uint32_t s_addr; 
-};
-
-struct socketaddr_in {
-    short             sin_family;
-    unsigned short      sin_port;
-    struct in_addr_      sin_addr;
-    char             sin_zero[8];
-};
-
-struct addrinfo{
-    int ai_flags;
-    int ai_family;
-    int ai_socktype;
-    int ai_protocol;
-    size_t addr_len;
-    struct sockaddr * ai_addr;
-    char * ai_canonname;
-
-    struct addrinfo * ai_next;    
-};
 
 
 namespace http {
+    enum{BUFFER_SIZE = 3072};
+
+    struct in_addr_{
+        uint32_t s_addr; 
+    };
+
+    struct socketaddr_in {
+        short             sin_family;
+        unsigned short      sin_port;
+        struct in_addr_      sin_addr;
+        char             sin_zero[8];
+    };
+
+    struct addrinfo{
+        int ai_flags;
+        int ai_family;
+        int ai_socktype;
+        int ai_protocol;
+        size_t addr_len;
+        struct sockaddr * ai_addr;
+        char * ai_canonname;
+
+        struct addrinfo * ai_next;    
+    };
     class TcpServer {
     public:
         const int MAX_SOCKET_CONNECTIONS = 5;

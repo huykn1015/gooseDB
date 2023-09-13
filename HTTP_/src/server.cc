@@ -1,8 +1,8 @@
-#include "../include/http_tcp_linux.h"
 #include <iostream>
 
+#include "../include/http_tcp_linux.h"
 
-void message_handler(char incoming_message[BUFFER_SIZE], http::TcpServer * server){
+void message_handler(char incoming_message[http::BUFFER_SIZE], http::TcpServer * server){
     server->send_response("");
 }
 

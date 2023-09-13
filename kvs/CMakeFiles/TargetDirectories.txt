@@ -1,0 +1,4 @@
+/Users/huykn/Desktop/gooseDB/kvs/CMakeFiles/kvs_main.dir
+/Users/huykn/Desktop/gooseDB/kvs/CMakeFiles/kvs_lib.dir
+/Users/huykn/Desktop/gooseDB/kvs/CMakeFiles/edit_cache.dir
+/Users/huykn/Desktop/gooseDB/kvs/CMakeFiles/rebuild_cache.dir
