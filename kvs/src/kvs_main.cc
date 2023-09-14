@@ -5,7 +5,8 @@ int main (int argc, char* argv[]) {
     std::string edit_key;
     std::string read_key;
     test_db.create_kvs("testdb", edit_key, read_key);
-
+    test_db.open_kvs("testdb", edit_key);
+    test_db.add_entry("hello", "hi");
 }
 
 

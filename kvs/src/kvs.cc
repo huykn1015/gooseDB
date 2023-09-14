@@ -11,17 +11,17 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 
 namespace kvs{
 
     const size_t token_length = 16;
 
 
-    int hash(std::string key, int divisor){
+    std::string hash(std::string key, int divisor){
         std::hash<std::string> hash_obj;
-        return static_cast<unsigned int>(hash_obj(key)) % divisor;
+        return std::to_string(static_cast<unsigned int>(hash_obj(key)) % divisor);
     }
-
 
     std::string getPath(){
         char buffer[1000];
@@ -30,7 +30,7 @@ namespace kvs{
     }
 
     bool KeyValueStore::fileExists(std::string filename){
-        std::string fullpath = db_path + filename;
+        std::string fullpath = prog_path + filename;
         struct stat sb;
         if (stat(fullpath.c_str(), &sb) == 0)
             return true;
@@ -53,9 +53,18 @@ namespace kvs{
         return str;
     }
 
+    int generateInfoFile(std::string name, std::string &edit_token, std::string &read_token, int kvs_size){
+        std::ofstream info_file(name + ".txt");
+        info_file << kvs_size << std::endl;
+        info_file << "0" << std::endl;
+        edit_token = generate_token(token_length);
+        read_token = generate_token(token_length);
+        info_file << edit_token << std::endl << read_token;
+    }
 
     KeyValueStore::KeyValueStore(){
-        db_path = getPath();
+        prog_path = getPath() + "/";
+        state = NONE;
     }
     
     KeyValueStore::~KeyValueStore(){
@@ -63,8 +72,8 @@ namespace kvs{
     }
 
     int KeyValueStore::create_kvs(std::string name, std::string &edit_token, std::string &read_token, int kvs_size){
-        std::string fullpath = db_path + name;
-        if(fileExists(fullpath)){
+        std::string fullpath = prog_path + name;
+        if(fileExists(name)){
             std::cout<< "DB already exists";
             return 1;
         }
@@ -72,47 +81,141 @@ namespace kvs{
             std::cout<< "Error creating DB";
             return 1;
         }
-        chdir((db_path + "/" + name).c_str());
-        std::ofstream info_file(name + ".txt");
-        info_file << name << std::endl;
-        info_file << kvs_size << std::endl;
-        info_file << "0" << std::endl;
-        edit_token = generate_token(token_length);
-        read_token = generate_token(token_length);
-        info_file << edit_token << std::endl << read_token;
-        std::cout<< "DB " << name << "successfully created" << std::endl;
+        chdir((fullpath).c_str());
+        generateInfoFile(name, edit_token, read_token, kvs_size);
+        std::cout<< "DB " << name << " successfully created" << std::endl;
+        chdir(prog_path.c_str());
         return 0;
     }
 
-    int KeyValueStore::open_kvs(std::string name){
-        std::string fullpath = db_path + name;
-        if(!fileExists(fullpath)){
-            std::cout<< "DB does not exists";
+    int KeyValueStore::open_kvs(std::string name, std::string token){
+        db_path = prog_path + name;
+        if(!fileExists(name)){
+            std::cout<< db_path <<" does not exists\n";
+            std::cout << "Cur Path: " << getPath() << std::endl;
+            db_path = "";
             return 1;
         }
-        chdir((db_path + "/" + name).c_str());
-
-
-
-
-
-
+        chdir((db_path).c_str());
+        db_name = name;
+        getDBInfo();
+        if(token == open_db.read_token){
+            std::cout << name << " opened in read mode\n";
+            state = READ;
+        }
+        else if(token == open_db.edit_token){
+            std::cout << name << " opened in write mode\n";
+            state = EDIT;
+        }
+        else{
+            resetOpenDB();
+            return 1;
+        }
         return 0;
     }
+
+    void KeyValueStore::close_kvs(){
+        resetOpenDB();
+        chdir(prog_path.c_str());
+    }
+
 
     int KeyValueStore::add_entry(std::string key, std::string value){
+        if(state != EDIT){
+            std::cout << "Incorrect permissions";
+            return 1;
+        }
+        std::string hashed_key = hash(key, open_db.kvs_size);
+        std::string hash_folder_path = db_path + "/" + hashed_key;
+        if(!fileExists(hash_folder_path)){
+            mkdir(hashed_key.c_str(), 0777);
+        }
+        std::ofstream entry_file;
+        entry_file.open(hash_folder_path + "/" + key);
+        entry_file << value;
+        entry_file.close();
         return 0;
     }
 
-    std::string KeyValueStore::get_entry(std::string key){
+    int KeyValueStore::get_entry(std::string key, std::string &buffer){
+        if(state >= EDIT){
+            std::cout << "Incorrect Permissions";
+            return 1;
+        }
+
+        std::string hashed_key = hash(key, open_db.kvs_size);
+        std::string entry_path = db_path + "/" + hashed_key + "/" + key;
+        if(!fileExists(entry_path)){
+            std::cout<< "Entry does not exist";
+            return 1;
+        }
+        std::ifstream entry_file(entry_path);
+        if (!entry_file){
+            return 1;
+        }
+        std::ostringstream ss;
+        ss << entry_file.rdbuf();
+        buffer = ss.str();
         return NULL;
     }
 
     int KeyValueStore::update_entry(std::string key, std::string new_value){
+        if(state != EDIT){
+            std::cout << "Incorrect permissions";
+            return 1;
+        }
+        std::string hashed_key = hash(key, open_db.kvs_size);
+        std::string entry_path = db_path + "/" + hashed_key + "/" + key;
+        if(!fileExists(entry_path)){
+            std::cout<< "Entry does not exist";
+            return 1;
+        }
+        std::ofstream entry_file;
+        entry_file.open(entry_path + "/" + key);
+        entry_file << new_value;
+        entry_file.close();
         return 0;
+    }
+
+
+    int KeyValueStore::delete_entry(std::string key){
+        if(state != EDIT){
+            std::cout << "Incorrect permissions";
+            return 1;
+        }
+        std::string hashed_key = hash(key, open_db.kvs_size);
+        std::string entry_path = db_path + "/" + hashed_key + "/" + key;
+        if(!fileExists(entry_path)){
+            std::cout<< "Entry does not exist";
+            return 1;
+        }
+        remove(entry_path.c_str());
+
+
+
     }
 
 
 
 
+    int KeyValueStore::getDBInfo(){
+        std::ifstream info_file;
+        info_file.open(db_name + ".txt");
+        std::string buffer;
+        std::getline(info_file, buffer);
+        open_db.kvs_size = std::stoi(buffer);
+        std::getline(info_file, buffer);
+        open_db.entries = std::stoi(buffer);
+        std::getline(info_file, open_db.edit_token);
+        std::getline(info_file, open_db.read_token);
+        return 0;
+    }
+    int KeyValueStore::updateInfoFile(){
+        std::ofstream info_file;
+        info_file.open(db_name + ".txt", std::ofstream::trunc);
+        info_file << std::to_string(open_db.kvs_size) << std::endl;
+        info_file << std::to_string(open_db.entries) << std::endl;
+        info_file << open_db.read_token << std::endl << open_db.read_token;
+        return 0;
+    }
 }
