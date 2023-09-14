@@ -72,7 +72,7 @@ namespace http {
             std::cout<< "Connected Accepted ...\n";
             std::cout<< "Client Message: " << buffer << std::endl;
 
-            (*function_prt)(buffer, this);
+            server_handler->message_handler(buffer, this);
         }   
         return 0;   
     }
@@ -97,9 +97,10 @@ namespace http {
         close(server_new_socket_fd);
     }   
 
-    void TcpServer::setup_handler(void (*new_function_prt)(char incoming_message[BUFFER_SIZE], TcpServer * server)){
-        function_prt = new_function_prt;
+    void TcpServer::setup_handler(HTTP_handler * handler){
+        this->server_handler = handler;
     }
+    
 
 
 

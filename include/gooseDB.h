@@ -4,25 +4,22 @@
 #include "/Users/huykn/Desktop/gooseDB/HTTP_/include/http_tcp_linux.h"
 #include "/Users/huykn/Desktop/gooseDB/kvs/include/kvs.h"
 
-namespace gooseDB{
+namespace gooseDB {
 
 
     class GooseServer{
     public:
         GooseServer();
         ~GooseServer();
-        int startServer(std::string ip, int port = 0);
+        int startServer(std::string ip_address, int port = 0);
 
     private:
-        void message_handler(char incoming_message[http::BUFFER_SIZE], http::TcpServer * server);
         int processRequest(std::string request, std::string &return_message);
         std::string createRequest(std::string name);
         std::string getRequest(std::string token, std::string key);
         std::string addRequest(std::string token, std::string key, std::string value);
         std::string updateRequest(std::string token, std::string key, std::string value);
         std::string deleteRequest(std::string token, std::string key);
-
-
     };
 
 
