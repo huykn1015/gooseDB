@@ -15,7 +15,7 @@ int main (int argc, char* argv[]) {
     test_db.add_entry("test", "entry");
     test_db.get_entry("test", buffer);
     std::cout<< "Buffer: " << buffer << std::endl;
-    test_db.update_entry("test", "entry2");
+    test_db.add_entry("test", "entry2");
     test_db.get_entry("test", buffer);
     std::cout<< "Buffer: " << buffer << std::endl;
     test_db.delete_entry("hello");

@@ -8,7 +8,6 @@ public:
     ~Test_handler(){}
 private:
     void message_handler(char incoming_message[http::BUFFER_SIZE], http::TcpServer * server){
-        std::cout<<"idk\n";
         server->send_response(http::create_response_("Hello World!"));
     }
 };

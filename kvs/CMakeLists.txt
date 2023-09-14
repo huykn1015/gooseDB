@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 3.9.1)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 project(KeyValueStore)
 add_executable(kvs_main ./src/kvs_main.cc)
 add_library(kvs_lib ./src/kvs.cc ./include/kvs.h)

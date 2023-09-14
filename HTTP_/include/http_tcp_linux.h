@@ -34,7 +34,7 @@ namespace http {
 
         struct addrinfo * ai_next;    
     };
-    static const std::string header_text = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length:";
+    static const std::string header_text = "\nHTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length:";
     static std::string create_response_(std::string message){
         std::ostringstream ss;
         ss << header_text << std::to_string(message.size()) << "\n\n" << message;

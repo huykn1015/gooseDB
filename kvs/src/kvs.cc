@@ -151,7 +151,7 @@ namespace kvs{
         std::ostringstream ss;
         ss << entry_file.rdbuf();
         buffer = ss.str();
-        return NULL;
+        return 0;
     }
 
     int KeyValueStore::update_entry(std::string key, std::string new_value){
@@ -210,4 +210,6 @@ namespace kvs{
         info_file << open_db.read_token << std::endl << open_db.read_token;
         return 0;
     }
+
+
 }

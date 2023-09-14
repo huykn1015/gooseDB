@@ -78,6 +78,7 @@ namespace http {
     }
 
     void TcpServer::send_response(std::string response){
+        response = create_response_(response);
         long totalBytesSent = 0;
         int bytesSent;
         while (totalBytesSent < response.size()){

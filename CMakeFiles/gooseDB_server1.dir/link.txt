@@ -1,0 +1,1 @@
+/Library/Developer/CommandLineTools/usr/bin/c++  -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -mmacosx-version-min=11.2 -Wl,-search_paths_first -Wl,-headerpad_max_install_names CMakeFiles/gooseDB_server1.dir/src/gooseDB_server1.cc.o -o gooseDB_server1  libhttp_tcp_linux.a libkvs_lib.a libgooseDB.a 

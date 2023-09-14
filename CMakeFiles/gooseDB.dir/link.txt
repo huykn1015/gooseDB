@@ -1,0 +1,2 @@
+/Library/Developer/CommandLineTools/usr/bin/ar qc libgooseDB.a CMakeFiles/gooseDB.dir/src/gooseDB.cc.o
+/Library/Developer/CommandLineTools/usr/bin/ranlib libgooseDB.a
