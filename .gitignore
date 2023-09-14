@@ -1,2 +1,4 @@
 ext.sh
 ./kvs/ref.txt
+./kvs/entry.txt
+./kvs/testdb

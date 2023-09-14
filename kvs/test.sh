@@ -1,6 +1,6 @@
 #!/bin/sh
 
-rm -r testdb
+find * -type d -name "test*" -exec rm -r {} +
 
 make all
 

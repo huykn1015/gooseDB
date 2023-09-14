@@ -17,7 +17,6 @@ namespace kvs{
 
     const size_t token_length = 16;
 
-
     std::string hash(std::string key, int divisor){
         std::hash<std::string> hash_obj;
         return std::to_string(static_cast<unsigned int>(hash_obj(key)) % divisor);
@@ -66,9 +65,8 @@ namespace kvs{
         prog_path = getPath() + "/";
         state = NONE;
     }
-    
-    KeyValueStore::~KeyValueStore(){
 
+    KeyValueStore::~KeyValueStore(){
     }
 
     int KeyValueStore::create_kvs(std::string name, std::string &edit_token, std::string &read_token, int kvs_size){
@@ -119,10 +117,9 @@ namespace kvs{
         chdir(prog_path.c_str());
     }
 
-
     int KeyValueStore::add_entry(std::string key, std::string value){
         if(state != EDIT){
-            std::cout << "Incorrect permissions";
+            std::cout << "ADD: Incorrect permissions";
             return 1;
         }
         std::string hashed_key = hash(key, open_db.kvs_size);
@@ -138,21 +135,19 @@ namespace kvs{
     }
 
     int KeyValueStore::get_entry(std::string key, std::string &buffer){
-        if(state >= EDIT){
-            std::cout << "Incorrect Permissions";
-            return 1;
-        }
+        if(state < EDIT){
+            std::cout << "GET: Incorrect Permissions";
 
+            std::cout<< std::to_string(state) <<std::endl;
+            return 1;
+        }
         std::string hashed_key = hash(key, open_db.kvs_size);
-        std::string entry_path = db_path + "/" + hashed_key + "/" + key;
+        std::string entry_path = db_name + "/" + hashed_key + "/" + key;
         if(!fileExists(entry_path)){
-            std::cout<< "Entry does not exist";
+            std::cout<< "GET: Entry does not exist\n";
             return 1;
         }
-        std::ifstream entry_file(entry_path);
-        if (!entry_file){
-            return 1;
-        }
+        std::ifstream entry_file(prog_path + entry_path);
         std::ostringstream ss;
         ss << entry_file.rdbuf();
         buffer = ss.str();
@@ -161,42 +156,38 @@ namespace kvs{
 
     int KeyValueStore::update_entry(std::string key, std::string new_value){
         if(state != EDIT){
-            std::cout << "Incorrect permissions";
+            std::cout << "UPDATE: Incorrect permissions";
             return 1;
         }
         std::string hashed_key = hash(key, open_db.kvs_size);
-        std::string entry_path = db_path + "/" + hashed_key + "/" + key;
+        std::string entry_path =  db_name + "/" + hashed_key + "/" + key;
         if(!fileExists(entry_path)){
-            std::cout<< "Entry does not exist";
+            std::cout<< "UPDATE: Entry does not exist\n";
             return 1;
         }
         std::ofstream entry_file;
-        entry_file.open(entry_path + "/" + key);
+        entry_file.open(prog_path + entry_path);
         entry_file << new_value;
         entry_file.close();
         return 0;
     }
 
-
     int KeyValueStore::delete_entry(std::string key){
         if(state != EDIT){
-            std::cout << "Incorrect permissions";
+            std::cout << "DELETE: Incorrect permissions";
             return 1;
         }
         std::string hashed_key = hash(key, open_db.kvs_size);
-        std::string entry_path = db_path + "/" + hashed_key + "/" + key;
+        std::string entry_path = db_name + "/" + hashed_key + "/" + key;
         if(!fileExists(entry_path)){
-            std::cout<< "Entry does not exist";
+            std::cout<< "DELETE: Entry does not exist";
             return 1;
         }
-        remove(entry_path.c_str());
-
-
-
+        if(remove((prog_path + entry_path).c_str())){
+            return 1;
+        }
+        return 0;
     }
-
-
-
 
     int KeyValueStore::getDBInfo(){
         std::ifstream info_file;
@@ -210,6 +201,7 @@ namespace kvs{
         std::getline(info_file, open_db.read_token);
         return 0;
     }
+
     int KeyValueStore::updateInfoFile(){
         std::ofstream info_file;
         info_file.open(db_name + ".txt", std::ofstream::trunc);
