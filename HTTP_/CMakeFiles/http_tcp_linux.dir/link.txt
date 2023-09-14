@@ -1,2 +1,2 @@
-/Library/Developer/CommandLineTools/usr/bin/ar qc libhttp_tcp_linux.a CMakeFiles/http_tcp_linux.dir/src/http_tcp_linux.cpp.o
+/Library/Developer/CommandLineTools/usr/bin/ar qc libhttp_tcp_linux.a CMakeFiles/http_tcp_linux.dir/src/http_tcp_linux.cc.o
 /Library/Developer/CommandLineTools/usr/bin/ranlib libhttp_tcp_linux.a

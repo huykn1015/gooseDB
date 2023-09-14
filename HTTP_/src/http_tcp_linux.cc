@@ -8,7 +8,6 @@
 
 
 #include <iostream>
-#include <sstream>
 
 namespace http {
     TcpServer::TcpServer(std::string ip_address, int port):ip_address(ip_address), port(port){
@@ -22,11 +21,6 @@ namespace http {
         stopServer();
     }
 
-    std::string TcpServer::create_response(std::string message){
-        std::ostringstream ss;
-        ss << TcpServer::header_text << std::to_string(message.size()) << "\n\n" << message;
-        return ss.str();
-    }
 
 
     void TcpServer::getServerAddr(){

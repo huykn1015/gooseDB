@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/http_tcp_linux.dir/src/http_tcp_linux.cpp.o"
-  "CMakeFiles/http_tcp_linux.dir/src/http_tcp_linux.cpp.o.d"
+  "CMakeFiles/http_tcp_linux.dir/src/http_tcp_linux.cc.o"
+  "CMakeFiles/http_tcp_linux.dir/src/http_tcp_linux.cc.o.d"
   "libhttp_tcp_linux.a"
   "libhttp_tcp_linux.pdb"
 )

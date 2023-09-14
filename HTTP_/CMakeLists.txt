@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.9.1)
 project(HTTP_Server)
-add_executable(http_linux_server ./src/server.cpp)
-add_library(http_tcp_linux ./src/http_tcp_linux.cpp ./include/http_tcp_linux.hpp)
+add_executable(http_linux_server ./src/server.cc)
+add_library(http_tcp_linux ./src/http_tcp_linux.cc ./include/http_tcp_linux.h)
 target_link_libraries(http_linux_server http_tcp_linux)

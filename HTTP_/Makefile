@@ -57,10 +57,10 @@ RM = /opt/homebrew/Cellar/cmake/3.24.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/huykn/Desktop/gooseDB/HTTP
+CMAKE_SOURCE_DIR = /Users/huykn/Desktop/gooseDB/HTTP_
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/huykn/Desktop/gooseDB/HTTP
+CMAKE_BINARY_DIR = /Users/huykn/Desktop/gooseDB/HTTP_
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/huykn/Desktop/gooseDB/HTTP/CMakeFiles /Users/huykn/Desktop/gooseDB/HTTP//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/huykn/Desktop/gooseDB/HTTP_/CMakeFiles /Users/huykn/Desktop/gooseDB/HTTP_//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/huykn/Desktop/gooseDB/HTTP/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/huykn/Desktop/gooseDB/HTTP_/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -142,53 +142,53 @@ http_tcp_linux/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_tcp_linux.dir/build.make CMakeFiles/http_tcp_linux.dir/build
 .PHONY : http_tcp_linux/fast
 
-src/http_tcp_linux.o: src/http_tcp_linux.cpp.o
+src/http_tcp_linux.o: src/http_tcp_linux.cc.o
 .PHONY : src/http_tcp_linux.o
 
 # target to build an object file
-src/http_tcp_linux.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_tcp_linux.dir/build.make CMakeFiles/http_tcp_linux.dir/src/http_tcp_linux.cpp.o
-.PHONY : src/http_tcp_linux.cpp.o
+src/http_tcp_linux.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_tcp_linux.dir/build.make CMakeFiles/http_tcp_linux.dir/src/http_tcp_linux.cc.o
+.PHONY : src/http_tcp_linux.cc.o
 
-src/http_tcp_linux.i: src/http_tcp_linux.cpp.i
+src/http_tcp_linux.i: src/http_tcp_linux.cc.i
 .PHONY : src/http_tcp_linux.i
 
 # target to preprocess a source file
-src/http_tcp_linux.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_tcp_linux.dir/build.make CMakeFiles/http_tcp_linux.dir/src/http_tcp_linux.cpp.i
-.PHONY : src/http_tcp_linux.cpp.i
+src/http_tcp_linux.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_tcp_linux.dir/build.make CMakeFiles/http_tcp_linux.dir/src/http_tcp_linux.cc.i
+.PHONY : src/http_tcp_linux.cc.i
 
-src/http_tcp_linux.s: src/http_tcp_linux.cpp.s
+src/http_tcp_linux.s: src/http_tcp_linux.cc.s
 .PHONY : src/http_tcp_linux.s
 
 # target to generate assembly for a file
-src/http_tcp_linux.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_tcp_linux.dir/build.make CMakeFiles/http_tcp_linux.dir/src/http_tcp_linux.cpp.s
-.PHONY : src/http_tcp_linux.cpp.s
+src/http_tcp_linux.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_tcp_linux.dir/build.make CMakeFiles/http_tcp_linux.dir/src/http_tcp_linux.cc.s
+.PHONY : src/http_tcp_linux.cc.s
 
-src/server.o: src/server.cpp.o
+src/server.o: src/server.cc.o
 .PHONY : src/server.o
 
 # target to build an object file
-src/server.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_linux_server.dir/build.make CMakeFiles/http_linux_server.dir/src/server.cpp.o
-.PHONY : src/server.cpp.o
+src/server.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_linux_server.dir/build.make CMakeFiles/http_linux_server.dir/src/server.cc.o
+.PHONY : src/server.cc.o
 
-src/server.i: src/server.cpp.i
+src/server.i: src/server.cc.i
 .PHONY : src/server.i
 
 # target to preprocess a source file
-src/server.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_linux_server.dir/build.make CMakeFiles/http_linux_server.dir/src/server.cpp.i
-.PHONY : src/server.cpp.i
+src/server.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_linux_server.dir/build.make CMakeFiles/http_linux_server.dir/src/server.cc.i
+.PHONY : src/server.cc.i
 
-src/server.s: src/server.cpp.s
+src/server.s: src/server.cc.s
 .PHONY : src/server.s
 
 # target to generate assembly for a file
-src/server.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_linux_server.dir/build.make CMakeFiles/http_linux_server.dir/src/server.cpp.s
-.PHONY : src/server.cpp.s
+src/server.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/http_linux_server.dir/build.make CMakeFiles/http_linux_server.dir/src/server.cc.s
+.PHONY : src/server.cc.s
 
 # Help Target
 help:

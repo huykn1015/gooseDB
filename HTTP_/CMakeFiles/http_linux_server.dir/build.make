@@ -53,10 +53,10 @@ RM = /opt/homebrew/Cellar/cmake/3.24.2/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/huykn/Desktop/gooseDB/HTTP
+CMAKE_SOURCE_DIR = /Users/huykn/Desktop/gooseDB/HTTP_
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/huykn/Desktop/gooseDB/HTTP
+CMAKE_BINARY_DIR = /Users/huykn/Desktop/gooseDB/HTTP_
 
 # Include any dependencies generated for this target.
 include CMakeFiles/http_linux_server.dir/depend.make
@@ -69,32 +69,32 @@ include CMakeFiles/http_linux_server.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/http_linux_server.dir/flags.make
 
-CMakeFiles/http_linux_server.dir/src/server.cpp.o: CMakeFiles/http_linux_server.dir/flags.make
-CMakeFiles/http_linux_server.dir/src/server.cpp.o: src/server.cpp
-CMakeFiles/http_linux_server.dir/src/server.cpp.o: CMakeFiles/http_linux_server.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/huykn/Desktop/gooseDB/HTTP/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/http_linux_server.dir/src/server.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/http_linux_server.dir/src/server.cpp.o -MF CMakeFiles/http_linux_server.dir/src/server.cpp.o.d -o CMakeFiles/http_linux_server.dir/src/server.cpp.o -c /Users/huykn/Desktop/gooseDB/HTTP/src/server.cpp
+CMakeFiles/http_linux_server.dir/src/server.cc.o: CMakeFiles/http_linux_server.dir/flags.make
+CMakeFiles/http_linux_server.dir/src/server.cc.o: src/server.cc
+CMakeFiles/http_linux_server.dir/src/server.cc.o: CMakeFiles/http_linux_server.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/huykn/Desktop/gooseDB/HTTP_/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/http_linux_server.dir/src/server.cc.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/http_linux_server.dir/src/server.cc.o -MF CMakeFiles/http_linux_server.dir/src/server.cc.o.d -o CMakeFiles/http_linux_server.dir/src/server.cc.o -c /Users/huykn/Desktop/gooseDB/HTTP_/src/server.cc
 
-CMakeFiles/http_linux_server.dir/src/server.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/http_linux_server.dir/src/server.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/huykn/Desktop/gooseDB/HTTP/src/server.cpp > CMakeFiles/http_linux_server.dir/src/server.cpp.i
+CMakeFiles/http_linux_server.dir/src/server.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/http_linux_server.dir/src/server.cc.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/huykn/Desktop/gooseDB/HTTP_/src/server.cc > CMakeFiles/http_linux_server.dir/src/server.cc.i
 
-CMakeFiles/http_linux_server.dir/src/server.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/http_linux_server.dir/src/server.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/huykn/Desktop/gooseDB/HTTP/src/server.cpp -o CMakeFiles/http_linux_server.dir/src/server.cpp.s
+CMakeFiles/http_linux_server.dir/src/server.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/http_linux_server.dir/src/server.cc.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/huykn/Desktop/gooseDB/HTTP_/src/server.cc -o CMakeFiles/http_linux_server.dir/src/server.cc.s
 
 # Object files for target http_linux_server
 http_linux_server_OBJECTS = \
-"CMakeFiles/http_linux_server.dir/src/server.cpp.o"
+"CMakeFiles/http_linux_server.dir/src/server.cc.o"
 
 # External object files for target http_linux_server
 http_linux_server_EXTERNAL_OBJECTS =
 
-http_linux_server: CMakeFiles/http_linux_server.dir/src/server.cpp.o
+http_linux_server: CMakeFiles/http_linux_server.dir/src/server.cc.o
 http_linux_server: CMakeFiles/http_linux_server.dir/build.make
 http_linux_server: libhttp_tcp_linux.a
 http_linux_server: CMakeFiles/http_linux_server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/huykn/Desktop/gooseDB/HTTP/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable http_linux_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/huykn/Desktop/gooseDB/HTTP_/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable http_linux_server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/http_linux_server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -106,6 +106,6 @@ CMakeFiles/http_linux_server.dir/clean:
 .PHONY : CMakeFiles/http_linux_server.dir/clean
 
 CMakeFiles/http_linux_server.dir/depend:
-	cd /Users/huykn/Desktop/gooseDB/HTTP && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/huykn/Desktop/gooseDB/HTTP /Users/huykn/Desktop/gooseDB/HTTP /Users/huykn/Desktop/gooseDB/HTTP /Users/huykn/Desktop/gooseDB/HTTP /Users/huykn/Desktop/gooseDB/HTTP/CMakeFiles/http_linux_server.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/huykn/Desktop/gooseDB/HTTP_ && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/huykn/Desktop/gooseDB/HTTP_ /Users/huykn/Desktop/gooseDB/HTTP_ /Users/huykn/Desktop/gooseDB/HTTP_ /Users/huykn/Desktop/gooseDB/HTTP_ /Users/huykn/Desktop/gooseDB/HTTP_/CMakeFiles/http_linux_server.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/http_linux_server.dir/depend
 

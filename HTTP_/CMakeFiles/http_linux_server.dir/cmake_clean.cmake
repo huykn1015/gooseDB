@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/http_linux_server.dir/src/server.cpp.o"
-  "CMakeFiles/http_linux_server.dir/src/server.cpp.o.d"
+  "CMakeFiles/http_linux_server.dir/src/server.cc.o"
+  "CMakeFiles/http_linux_server.dir/src/server.cc.o.d"
   "http_linux_server"
   "http_linux_server.pdb"
 )

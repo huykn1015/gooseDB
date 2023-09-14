@@ -8,12 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/huykn/Desktop/gooseDB/HTTP/src/server.cpp" "CMakeFiles/http_linux_server.dir/src/server.cpp.o" "gcc" "CMakeFiles/http_linux_server.dir/src/server.cpp.o.d"
+  "/Users/huykn/Desktop/gooseDB/HTTP_/src/server.cc" "CMakeFiles/http_linux_server.dir/src/server.cc.o" "gcc" "CMakeFiles/http_linux_server.dir/src/server.cc.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/Users/huykn/Desktop/gooseDB/HTTP/CMakeFiles/http_tcp_linux.dir/DependInfo.cmake"
+  "/Users/huykn/Desktop/gooseDB/HTTP_/CMakeFiles/http_tcp_linux.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

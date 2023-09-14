@@ -5,7 +5,7 @@
 #include <sys/socket.h>
 
 #include <string>
-
+#include <sstream>
 
 
 namespace http {
@@ -33,15 +33,19 @@ namespace http {
 
         struct addrinfo * ai_next;    
     };
+    static const std::string header_text = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length:";
+    static std::string create_response_(std::string message){
+        std::ostringstream ss;
+        ss << header_text << std::to_string(message.size()) << "\n\n" << message;
+        return ss.str();
+    }
     class TcpServer {
     public:
         const int MAX_SOCKET_CONNECTIONS = 5;
         std::string htmlFile = "<!DOCTYPE html><html lang=\"en\"><body><h1> HOME </h1><p> Hello from your Server :) </p></body></html>";
         std::string test_message = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length:12 \n\nHello World!"; //100\n\n<!DOCTYPE html><html lang=\"en\"><body><h1> HOME </h1><p> Hello from your Server :) </p></body></html>";
-        std::string header_text = "HTTP/1.1 200 OK\nContent-Type: text/plain\nContent-Length:";
         TcpServer(std::string ip_address, int port = 0);
         ~TcpServer();
-        std::string create_response(std::string message);
         void send_response(std::string response);
         int  startServer(); // start server and begin listening for connections
         void getServerAddr();
